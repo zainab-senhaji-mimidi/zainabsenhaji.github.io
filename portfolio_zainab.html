@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zainab Senhaji Mimidi — Ingénieure Logiciel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf8f4;
+    --warm-white: #f5f2ec;
+    --ink: #1c1917;
+    --ink-soft: #3d3830;
+    --rose: #c9736a;
+    --rose-light: #e8b4af;
+    --rose-pale: #f7ece9;
+    --muted: #9c9489;
+    --border: #e8e0d4;
+    --surface: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 5rem;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+    font-style: italic;
+  }
+
+  .nav-logo span { color: var(--rose); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.25s;
+    cursor: pointer;
+  }
+
+  .nav-links a:hover { color: var(--rose); }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 7rem 2.5rem;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    padding-top: 10rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-left { position: relative; }
+
+  .hero-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    color: var(--rose);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s ease forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--rose);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.25s ease forwards;
+  }
+
+  .hero-name strong {
+    font-weight: 700;
+    display: block;
+    color: var(--ink);
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .hero-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s ease forwards;
+  }
+
+  .hero-desc {
+    font-size: 0.97rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    max-width: 460px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.55s ease forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.7s ease forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s;
+  }
+
+  .btn-primary { background: var(--ink); color: var(--cream); }
+  .btn-primary:hover { background: var(--rose); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,115,106,0.25); }
+  .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-outline:hover { border-color: var(--rose); color: var(--rose); transform: translateY(-2px); }
+
+  /* Hero right */
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.6s ease forwards;
+  }
+
+  .hero-deco { width: 320px; height: 400px; position: relative; }
+
+  .deco-box { position: absolute; border: 1px solid var(--border); border-radius: 2px; }
+  .deco-box-1 { inset: 0; background: var(--warm-white); }
+  .deco-box-2 { top: 20px; left: 20px; right: -20px; bottom: -20px; background: var(--rose-pale); z-index: -1; border-color: var(--rose-light); }
+
+  .deco-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem;
+  }
+
+  .deco-stat {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border);
+    width: 100%;
+    background: white;
+  }
+
+  .deco-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--rose);
+    line-height: 1;
+  }
+
+  .deco-stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  .deco-avail {
+    width: 100%;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.9rem 1rem;
+    text-align: center;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* SECTION TITLES */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: var(--rose);
+    font-style: italic;
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 4px;
+  }
+
+  /* EXPERIENCE */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-item:first-of-type { border-top: 1px solid var(--border); }
+
+  .exp-meta { padding-top: 0.3rem; }
+
+  .exp-period {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    color: var(--rose);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .exp-location { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  .exp-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
+  }
+
+  .exp-role {
+    font-size: 0.83rem;
+    color: var(--rose);
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .exp-bullets li {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--rose-light); }
+
+  .stack-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    color: var(--rose);
+    background: var(--rose-pale);
+    border: 1px solid var(--rose-light);
+    padding: 0.2rem 0.65rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* SKILLS */
+  .skills-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .skill-row:nth-child(odd) { padding-right: 3rem; border-right: 1px solid var(--border); }
+  .skill-row:nth-child(even) { padding-left: 3rem; }
+
+  .skill-cat {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  .skill-val { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.6; }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .edu-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rose), var(--rose-light));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .edu-card:hover::after { transform: scaleX(1); }
+  .edu-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); }
+
+  .edu-years {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: var(--rose);
+    font-style: italic;
+    margin-bottom: 0.8rem;
+  }
+
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .edu-school { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* LANGUAGES */
+  .lang-row {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .lang-item {
+    flex: 1;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .lang-item:last-child { border-right: none; }
+  .lang-item:hover { background: var(--rose-pale); }
+
+  .lang-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .lang-level {
+    font-size: 0.72rem;
+    color: var(--rose);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* CONTACT */
+  #contact { text-align: center; }
+
+  .contact-card {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,115,106,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-card .section-title { color: var(--cream); }
+  .contact-card .section-num { color: var(--rose-light); }
+  .contact-card .section-line { background: rgba(255,255,255,0.1); }
+
+  .contact-desc {
+    color: rgba(250,248,244,0.6);
+    font-size: 0.97rem;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.6rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    transition: all 0.25s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--rose-light);
+    color: var(--rose-light);
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    background: var(--cream);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .skills-layout { grid-template-columns: 1fr; }
+    .skill-row:nth-child(odd) { padding-right: 0; border-right: none; }
+    .skill-row:nth-child(even) { padding-left: 0; }
+    .edu-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>Z</span>ainab Senhaji</div>
+  <ul class="nav-links">
+    <li><a onclick="scrollToSection('experience')">Expérience</a></li>
+    <li><a onclick="scrollToSection('skills')">Compétences</a></li>
+    <li><a onclick="scrollToSection('education')">Formation</a></li>
+    <li><a onclick="scrollToSection('contact')">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Ingénieure Logiciel · Paris, France</div>
+    <h1 class="hero-name">
+      Zainab<br>
+      <strong>Senhaji</strong>
+      <em>Mimidi</em>
+    </h1>
+    <p class="hero-subtitle">Full Stack · Performance · Systèmes critiques</p>
+    <p class="hero-desc">
+      Ingénieure logiciel orientée performance, spécialisée dans l'optimisation algorithmique, la fiabilisation d'applications critiques et la conception de systèmes robustes en production.
+    </p>
+    <div class="hero-ctas">
+      <a onclick="scrollToSection('experience')" class="btn btn-primary">Voir mes expériences →</a>
+      <a onclick="scrollToSection('contact')" class="btn btn-outline">Me contacter</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-deco">
+      <div class="deco-box deco-box-2"></div>
+      <div class="deco-box deco-box-1">
+        <div class="deco-inner">
+          <div class="deco-stat">
+            <div class="deco-stat-num">3</div>
+            <div class="deco-stat-label">missions réussies</div>
+          </div>
+          <div class="deco-stat">
+            <div class="deco-stat-num">10+</div>
+            <div class="deco-stat-label">technologies maîtrisées</div>
+          </div>
+          <div class="deco-stat">
+            <div class="deco-stat-num">2</div>
+            <div class="deco-stat-label">masters obtenus</div>
+          </div>
+          <div class="deco-avail">✦ Disponible — CDI — Toute la France</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">01.</span>
+    <h2 class="section-title">Expériences<br>Professionnelles</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-meta">
+      <div class="exp-period">Fév 2025 – Juil 2025</div>
+      <div class="exp-location">Nice, France</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-company">Atline Services</div>
+      <div class="exp-role">Stagiaire Ingénieure Logiciel — Full Stack PHP/Angular · Marchés publics</div>
+      <ul class="exp-bullets">
+        <li>Refonte du front-end Angular d'une plateforme de publication d'avis de marchés publics, avec conception de composants dynamiques et réutilisables pour la gestion des modèles d'annonces.</li>
+        <li>Intégration des API TED pour l'automatisation de l'import des avis, avec conception et développement de services web internes.</li>
+        <li>Mise en œuvre d'une solution d'authentification SSO et participation aux rituels Agile/Scrum en coordination avec les équipes métier et techniques.</li>
+      </ul>
+      <div class="stack-tags">
+        <span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">PHP</span>
+        <span class="tag">API REST</span><span class="tag">SSO</span><span class="tag">Agile/Scrum</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-meta">
+      <div class="exp-period">Juin 2023 – Août 2024</div>
+      <div class="exp-location">Nice, France</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-company">Atline-Sycomore</div>
+      <div class="exp-role">Apprentie Ingénieure Logiciel — Full Stack PHP/Angular · Marchés publics</div>
+      <ul class="exp-bullets">
+        <li>Développement et optimisation d'interfaces front-end Angular (TypeScript, RxJS, services, composants réutilisables, lazy loading) pour des applications métier critiques en production.</li>
+        <li>Maintenance évolutive et corrective d'un back-end PHP (architecture MVC, gestion des requêtes SQL, ORM, sécurisation des endpoints, optimisation des performances).</li>
+        <li>Conception, développement et intégration d'API REST sécurisées, gestion de l'authentification, des rôles et permissions.</li>
+        <li>Mise en place et optimisation des pipelines CI/CD, application des bonnes pratiques (SOLID, design patterns, clean code), en équipe de plus de 20 développeurs.</li>
+      </ul>
+      <div class="stack-tags">
+        <span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">RxJS</span>
+        <span class="tag">PHP/MVC</span><span class="tag">SQL</span><span class="tag">CI/CD</span><span class="tag">Git</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-meta">
+      <div class="exp-period">Juin 2022 – Mai 2023</div>
+      <div class="exp-location">Fès, Maroc</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-company">Alten</div>
+      <div class="exp-role">Apprentie Ingénieure Logiciel — Full Stack Spring Boot/Angular</div>
+      <ul class="exp-bullets">
+        <li>Conception et structuration de l'architecture d'une application web de gestion de contrats, couvrant l'analyse des besoins métier et la modélisation fonctionnelle.</li>
+        <li>Conception du modèle de données et implémentation d'une base PostgreSQL : normalisation, contraintes d'intégrité et optimisation des performances.</li>
+        <li>Conception et développement d'API REST sécurisées (Spring Boot, Hibernate/JPA) et d'une interface Angular responsive, en respect des principes SOLID, en environnement Agile.</li>
+      </ul>
+      <div class="stack-tags">
+        <span class="tag">Spring Boot</span><span class="tag">Angular</span><span class="tag">PostgreSQL</span>
+        <span class="tag">Hibernate/JPA</span><span class="tag">API REST</span><span class="tag">SOLID</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">02.</span>
+    <h2 class="section-title">Compétences<br>Techniques</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-layout reveal">
+    <div class="skill-row">
+      <div class="skill-cat">Langages</div>
+      <div class="skill-val">C/C++, Java, Python, JavaScript, TypeScript, SQL, R, Kotlin, PHP, Ruby</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Outils</div>
+      <div class="skill-val">VS Code, IntelliJ, Eclipse, CLion, Postman, Maven</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Frameworks</div>
+      <div class="skill-val">Spring Boot, JUnit, JEE, Hibernate, React, Next.js, Angular, Vue.js, PHP</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">DevOps</div>
+      <div class="skill-val">Git/GitHub, Jenkins, Podman, Docker, Kubernetes, Bitbucket, Linux</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Bases de données</div>
+      <div class="skill-val">MySQL, PostgreSQL, Oracle, Couchbase, MongoDB</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Gestion de projet</div>
+      <div class="skill-val">Jira, Confluence, Scrum, SAFe</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Qualité & cycle</div>
+      <div class="skill-val">ISO/IEC 12207 (Software Life Cycle), ISO/IEC 25010 (Software Quality)</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-cat">Pratiques</div>
+      <div class="skill-val">SOLID, Design Patterns, Clean Code, TDD, Architecture en couches</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-num">03.</span>
+    <h2 class="section-title">Parcours<br>Académique</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-years">2024 – 2025</div>
+      <div class="edu-degree">Master — Ingénierie Logicielle en Technologie de l'Hypermédia</div>
+      <div class="edu-school">Université Paris 8</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-years">2023 – 2024</div>
+      <div class="edu-degree">Master — Ingénierie des Systèmes d'Information</div>
+      <div class="edu-school">ESISA — Fès, Maroc</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-years">2020 – 2023</div>
+      <div class="edu-degree">Diplôme d'Ingénieur — Génie Logiciel</div>
+      <div class="edu-school">ESISA — Fès, Maroc</div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages" style="padding-top: 0;">
+  <div class="section-header reveal">
+    <span class="section-num">04.</span>
+    <h2 class="section-title">Maîtrise<br>Linguistique</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="lang-row reveal">
+    <div class="lang-item">
+      <div class="lang-name">Français</div>
+      <div class="lang-level">Courant</div>
+    </div>
+    <div class="lang-item">
+      <div class="lang-name">Anglais</div>
+      <div class="lang-level">Professionnel</div>
+    </div>
+    <div class="lang-item">
+      <div class="lang-name">Arabe</div>
+      <div class="lang-level">Langue maternelle</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding: 0; max-width: 100%;">
+  <div class="contact-card">
+    <div style="max-width: 1080px; margin: 0 auto; padding: 5rem 2.5rem;">
+      <div class="section-header reveal" style="margin-bottom: 1rem;">
+        <span class="section-num">05.</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-line"></div>
+      </div>
+      <h3 class="reveal" style="font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(1.8rem,3.5vw,2.8rem); color:var(--cream); letter-spacing:-0.5px; margin-bottom:1.5rem;">Travaillons<br><span style="font-weight:700;">Ensemble</span></h3>
+      <p class="contact-desc reveal">À la recherche d'un poste en CDI — Ingénieure Logiciel, mobile sur l'ensemble du territoire français. N'hésitez pas à me contacter.</p>
+      <div class="contact-links reveal">
+        <a href="mailto:zainab.senhaji.mimidi@gmail.com" class="contact-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          zainab.senhaji.mimidi@gmail.com
+        </a>
+        <a href="tel:+33763032003" class="contact-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          +33 7 63 03 20 03
+        </a>
+        <a href="https://www.linkedin.com/in/zainab-senhaji-mimidi" target="_blank" class="contact-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Zainab Senhaji Mimidi · Paris, France</p>
+</footer>
+
+<script>
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const navH = document.querySelector('nav').offsetHeight;
+    const top = el.getBoundingClientRect().top + window.scrollY - navH - 20;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
